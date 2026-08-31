@@ -31,9 +31,9 @@ namespace CommentPractice2
             // Gather user's choice for the starting area of the game
             Console.WriteLine("What do you want to do?");
 
-            Console.WriteLine("fhdkzghdx");                 // 6
-            Console.WriteLine("erakgsuheiulrgh");           // 17
-            Console.WriteLine("dsgzdghxdcf");               // 285
+            Console.Write("six | ");                               // 6
+            Console.Write("seventeen | ");                         // 17
+            Console.Write("two hundred eighty five");              // 285
         }
     }
 }
