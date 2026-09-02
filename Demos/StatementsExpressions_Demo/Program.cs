@@ -9,6 +9,9 @@ namespace StatementsExpressions_Demo
     {
         static void Main(string[] args)
         {
+            // ----------------------------------------------------------------
+            // Expressions
+            // ----------------------------------------------------------------
             // An expression by itself won't compile
             // All three of these cause syntax errors and have red squiggles underneath:
             //"Hello everyone";
@@ -21,25 +24,49 @@ namespace StatementsExpressions_Demo
             Console.WriteLine(4 + 274);
             Console.WriteLine(12345);
 
+            // ----------------------------------------------------------------
+            // Integer and Floating point division
+            // ----------------------------------------------------------------
+            // Integer division --> answer is a whole number
+            // Floating point division --> answer contains a fractional component
+
             // Watch for integer vs. floating point division!   // Console shows:
             Console.WriteLine("9/4 is " + (9/4));               // 2
             Console.WriteLine("9.0/4 is " + (9.0/4));           // 2.25
             Console.WriteLine("9.0/4.0 is " + (9.0/4.0));       // 2.25
             Console.WriteLine("9/4.0 is " + (9/4.0));           // 2.25
 
-            // Mod gives us the remainder
+            // ----------------------------------------------------------------
+            // Modulus
+            // ----------------------------------------------------------------
+            // Mod gives us the remainder after floating point division
             Console.WriteLine("9%4 is " + (9%4));
-            
-            // Escape characters for quotations
+
+            // ----------------------------------------------------------------
+            // Escape characters
+            // ----------------------------------------------------------------
+            // " cannot be natively used as-is within a string. Must convert to an 
+            //   escape character in order to be visible in console window.
+            // Escape characters for quotations:  \n places a " in the console window
             Console.WriteLine("Then he said, \"Howdy!\"");
             Console.WriteLine("Then he said, 'Howdy!'");
             Console.WriteLine("Then he said, \'Howdy!\'");
             Console.WriteLine("\\\"");
 
+            // ----------------------------------------------------------------
+            // Concatenation with math:
+            // ----------------------------------------------------------------
+            // + is seen as concatenation and NOT addition when one of the operands
+            //   is a string. 
             Console.WriteLine("5 plus 5 is " + (5 + 5));        // 10
             Console.WriteLine("5 plus 5 is " + 5 + 5);          // 55
             Console.WriteLine("5 times 5 is " + 5 + 5*2);       // 510
 
+            // ----------------------------------------------------------------
+            // Concatenation with strings
+            // ----------------------------------------------------------------
+            // 2 or more strings are "smooshed together" as one string.
+            Console.WriteLine("Hi " + "everyone!");
         }
     }
 }
