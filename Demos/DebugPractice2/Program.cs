@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            // TODO: Write pseudocode for the nested conditional
 
             // IF state is IL or MN THEN
             //     IF younger than 15
@@ -18,6 +19,7 @@
             //     IF age is 18 THEN
             //         License
 
+            // TODO: write code for the conditional
             string state = "IL";
             int age = 14;
 
