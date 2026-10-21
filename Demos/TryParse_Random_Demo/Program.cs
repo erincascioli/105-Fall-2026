@@ -1,4 +1,9 @@
-﻿namespace TryParse_Random_Demo
+﻿// Erin Cascioli
+// 10/21/2026
+// Demo: Random number generation and TryParse method
+
+
+namespace TryParse_Random_Demo
 {
     internal class Program
     {
@@ -8,9 +13,9 @@
             // ----------------------------------------------------------------
             // Variables for using TryParse:
             // ----------------------------------------------------------------
-            int result = 0;
-            bool success = false;
-            string parseValue = "arghscyf";
+            int result = 1000;
+            bool success = true;
+            string parseValue = "whehdz";
 
             // ----------------------------------------------------------------
             // Attempt a parse of "bad" data with TryParse
@@ -35,8 +40,9 @@
                 parseValue = Console.ReadLine()!;
                 success = int.TryParse(parseValue, out result);
             }
-
-
+            
+            
+                        
             // ----------------------------------------------------------------
             // Using Random numbers
             // ----------------------------------------------------------------
@@ -44,11 +50,17 @@
             int singleRandomInteger = generator.Next(1, 101);
             double singleRandomDouble = generator.NextDouble();
 
-            
-            // Generate 1,000 random values between 0 and 9
+            // Generate 15 numbers between 1 (incusive) and 10 (inclusive)
+            for (int i = 0; i < 15; i++)
+            {
+                Console.WriteLine(generator.Next(1, 11));
+            }
+
+
+            // Generate 100,000,000 random values between 0 and 9
             // Use an array to plot their frequency
             int[] numbers = new int[10];
-            int numberValues = 1_000_000_000;
+            int numberValues = 100_000_000;
 
             for(int i = 0; i < numberValues; i++)
             {
@@ -69,6 +81,7 @@
                 // Display results
                 Console.WriteLine($"{i}: {frequency} tallies. {percentage}%");
             }
+            
         }
     }
 }
