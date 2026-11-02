@@ -32,10 +32,6 @@ namespace EnemyOOP_Demo
         // CONSTRUCTOR of the class
         // --------------------------------------------------------------------
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        // TODO: Add an XML comment for this constructor
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
         public Enemy(string name, int currentHealth)
         {
             this.name = name;
@@ -61,7 +57,8 @@ namespace EnemyOOP_Demo
             }
 
             // All enemies start with the same 4 items
-            heldItems = new string[4] { "rations", "trinket", "trap", "healing potion" };
+            heldItems = new string[3] 
+            { "rations", "trinket", "trap" };
 
             // Get an instance of Random ready for any necessary value randomization
             generator = new Random();
@@ -85,11 +82,144 @@ namespace EnemyOOP_Demo
         // TODO: When class is over, add an XML comment to each method.
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        // 1. Print data about the enemy
-        // 2. Harm this enemy (takes damage and reduces currentHealth)
+        // 1. DONE Print data about the enemy
+        // 2. DONE Harm this enemy (takes damage and reduces currentHealth)
         // 3. Attack another enemy (randomly attack based on weapon type)
         // 4. Heal to no more than full health
         // 5. Get the name of this Enemy
 
+        /// <summary>
+        /// Prints details about this Enemy instance.
+        /// </summary>
+        public void PrintEnemy()
+        {
+            Console.WriteLine($"{name} has a {enemyWeapon}.");
+            Console.WriteLine($"{name} has {currentHealth}/{maxHealth} health");
+            Console.WriteLine($"{name} has these items:");
+            for (int i = 0; i < heldItems.Length; i++)
+            {
+                Console.WriteLine($" - {heldItems[i]}");
+            }
+        }
+
+        /// <summary>
+        /// Reduces this Enemy instance's current health by a spcified amount
+        /// </summary>
+        /// <param name="damage">Amount of damage the Enemy receives. 
+        /// When value is negative, no damage is applied.</param>
+        public void TakeDamage(int damage)
+        {
+            // Only positive damage can harm the player
+            if(damage >= 0)
+                currentHealth -= damage;
+
+            // Dropped below 0? Cap it at 0.
+            if (currentHealth < 0)
+                currentHealth = 0;
+        }
+
+
+        public int Attack()
+        { 
+            int lowDamage = 0;
+            int highDamage = 0;
+
+            switch(enemyWeapon)
+            {
+                case Weapon.Axe:
+                    lowDamage = 5;
+                    highDamage = 9;
+                    break;
+                case Weapon.Dagger:
+                    lowDamage = 2;
+                    highDamage = 6;
+                    break;
+                case Weapon.Sword:
+                    lowDamage = 6;
+                    highDamage = 12;
+                    break;
+            }
+
+            return generator.Next(lowDamage, highDamage + 1);
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+
+
+        /*
+        public void PrintEnemy()
+        {
+            Console.WriteLine($"{name} carries a {enemyWeapon}.");
+            Console.WriteLine($"{currentHealth}/{maxHealth} health");
+            Console.WriteLine($"There are {heldItems.Length} items:");
+            for(int i = 0; i < heldItems.Length; i++)
+            {
+                Console.WriteLine($" - {heldItems[i]}");
+            }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            // What if damage is negative? Don't want to heal.
+            currentHealth -= Math.Abs(damage);
+
+            // What if health drops below 0?
+            if (currentHealth < 0) 
+                currentHealth = 0;
+        }
+
+        public int Attack()
+        {
+            int lowDamage = 0;
+            int highDamage = 0;
+
+            switch(enemyWeapon)
+            {
+                case Weapon.Axe:
+                    lowDamage = 5;
+                    highDamage = 9;
+                    break;
+                case Weapon.Dagger:
+                    lowDamage = 2;
+                    highDamage = 6;
+                    break;
+                case Weapon.Sword:
+                    lowDamage = 6;
+                    highDamage = 12;
+                    break;
+            }
+
+            return generator.Next(lowDamage, highDamage + 1);
+        }
+
+        public bool Heal()
+        {
+            // Heal if the enemy has a healing potion
+            // Search through the items to find one!
+            bool hasPotion = false;
+            for(int i = 0; i < heldItems.Length; i++)
+            {
+                if (heldItems[i] == "healing potion")
+                    hasPotion = true;
+            }
+
+            if(hasPotion)
+            {
+                currentHealth = maxHealth;
+                return true;
+            }
+
+            return false;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+        */
     }
 }
