@@ -4,7 +4,9 @@ using System.Text;
 
 namespace EnemyOOP_Demo2
 {
-
+    /// <summary>
+    /// Weapon types that Enemy objects can wield.
+    /// </summary>
     public enum Weapon
     {
         Sword,
@@ -12,7 +14,9 @@ namespace EnemyOOP_Demo2
         Dagger
     }
 
-
+    /// <summary>
+    /// Class that represents an Enemy in a game.
+    /// </summary>
     internal class Enemy
     {
 
@@ -28,6 +32,80 @@ namespace EnemyOOP_Demo2
         private string[] heldItems;
         private Random generator;
 
+        // --------------------------------------------------------------------
+        // Properties go here, between fields and constructors!!!
+        // --------------------------------------------------------------------
+
+        /// <summary>
+        /// Property for the name field that allows for retrieving the name and also
+        /// limited changing of the name.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                // Only change the name if the attempted change is twice the size
+                //   or more
+                if (value.Length >= name.Length * 2)
+                    name = value;
+            }
+        }
+
+        /// <summary>
+        /// Read-only property for the currentHealth field
+        /// </summary>
+        public int CurrentHealth
+        {
+            get
+            {
+                return currentHealth;
+            }
+        }
+
+        /// <summary>
+        /// Read and write access to the Weapon field. 
+        /// </summary>
+        public Weapon EnemyWeapon
+        {
+            get
+            {
+                return enemyWeapon;
+            }
+            set
+            {
+                // Only swap weapons when the enemy reaches < 20% health and not dead
+                // This is a limitation on the setting of data!
+                if(currentHealth <= maxHealth * 0.2 && currentHealth > 0)
+                    enemyWeapon = value;
+            }
+        }
+
+        /// <summary>
+        /// Property without a backing field.  Calculates the percent of health.
+        /// </summary>
+        public double PercentHealth
+        {
+            get 
+            { 
+                return ((double)currentHealth / maxHealth) * 100; 
+            }
+        }
+
+        /// <summary>
+        /// Property without a backing field. Determines whether Enemy is dead. 
+        /// </summary>
+        public bool IsDead
+        {
+            get 
+            { 
+                return currentHealth <= 0; 
+            }
+        }      
+               
 
         // --------------------------------------------------------------------
         // CONSTRUCTOR of the class
@@ -39,7 +117,7 @@ namespace EnemyOOP_Demo2
             this.currentHealth = currentHealth;
 
             // All Enemies can be maxed to 100 HP
-            maxHealth = 100;
+            maxHealth = 200;
 
             // Weapon type is dependent on the name length
             int nameLength = name.Length;
@@ -80,7 +158,6 @@ namespace EnemyOOP_Demo2
             }
         }
 
-
         public void TakeDamage(int damage)
         {
             // Choice 1:  Take positive value of a negative damage
@@ -94,7 +171,6 @@ namespace EnemyOOP_Demo2
             if (currentHealth < 0)
                 currentHealth = 0;
         }
-
 
         public int Attack()
         {
@@ -119,22 +195,6 @@ namespace EnemyOOP_Demo2
 
             return generator.Next(lowDamage, highDamage + 1);
         }
-
-        public string GetName()
-        {
-            return name;
-        }
-
-
-        // --------------------------------------------------------------------
-        // TODO: We will write some methods today!
-        // TODO: When class is over, add an XML comment to each method.
-        // --------------------------------------------------------------------
-        // 1. Print data about the enemy
-        // 2. Harm this enemy (takes damage and reduces currentHealth)
-        // 3. Attack another enemy (randomly attack based on weapon type)
-        // 4. Heal to no more than full health
-        // 5. Get the name of this Enemy
 
     }
 }
