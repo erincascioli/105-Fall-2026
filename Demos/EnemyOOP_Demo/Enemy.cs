@@ -29,6 +29,50 @@ namespace EnemyOOP_Demo
 
 
         // --------------------------------------------------------------------
+        // Properties of the class
+        // --------------------------------------------------------------------
+
+        /// <summary>
+        /// Read-only property allows access to the name without changing it.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
+
+        /// <summary>
+        /// Read and write-only property allows getting the Weapon and also changing the Weapon
+        ///    but only if the Enemy is below 20% health.
+        /// </summary>
+        public Weapon EnemyWeapon
+        {
+            get
+            {
+                return enemyWeapon;
+            }
+            set
+            {
+                if(currentHealth <= maxHealth * 0.2)
+                    enemyWeapon = value;
+            }
+        }
+
+        /// <summary>
+        /// Property without a backing field.  Returns this Enemy's percentage of health.
+        /// </summary>
+        public double PercentHealth
+        {
+            get
+            {
+                return ((double)currentHealth / maxHealth) * 100;
+            }
+        }
+
+
+        // --------------------------------------------------------------------
         // CONSTRUCTOR of the class
         // --------------------------------------------------------------------
 
@@ -38,7 +82,7 @@ namespace EnemyOOP_Demo
             this.currentHealth = currentHealth;
 
             // All Enemies can be maxed to 100 HP
-            maxHealth = 100;
+            maxHealth = 200;
 
             // Weapon type is dependent on the name length
             int nameLength = name.Length;
@@ -118,7 +162,11 @@ namespace EnemyOOP_Demo
                 currentHealth = 0;
         }
 
-
+        /// <summary>
+        /// Attacks another entity for a randomly chosen amount of damage dependent 
+        /// on the wielded weapon.
+        /// </summary>
+        /// <returns>Attack damage applied to another entity</returns>
         public int Attack()
         { 
             int lowDamage = 0;
@@ -143,59 +191,7 @@ namespace EnemyOOP_Demo
             return generator.Next(lowDamage, highDamage + 1);
         }
 
-        public string GetName()
-        {
-            return name;
-        }
-
-
-
         /*
-        public void PrintEnemy()
-        {
-            Console.WriteLine($"{name} carries a {enemyWeapon}.");
-            Console.WriteLine($"{currentHealth}/{maxHealth} health");
-            Console.WriteLine($"There are {heldItems.Length} items:");
-            for(int i = 0; i < heldItems.Length; i++)
-            {
-                Console.WriteLine($" - {heldItems[i]}");
-            }
-        }
-
-        public void TakeDamage(int damage)
-        {
-            // What if damage is negative? Don't want to heal.
-            currentHealth -= Math.Abs(damage);
-
-            // What if health drops below 0?
-            if (currentHealth < 0) 
-                currentHealth = 0;
-        }
-
-        public int Attack()
-        {
-            int lowDamage = 0;
-            int highDamage = 0;
-
-            switch(enemyWeapon)
-            {
-                case Weapon.Axe:
-                    lowDamage = 5;
-                    highDamage = 9;
-                    break;
-                case Weapon.Dagger:
-                    lowDamage = 2;
-                    highDamage = 6;
-                    break;
-                case Weapon.Sword:
-                    lowDamage = 6;
-                    highDamage = 12;
-                    break;
-            }
-
-            return generator.Next(lowDamage, highDamage + 1);
-        }
-
         public bool Heal()
         {
             // Heal if the enemy has a healing potion
@@ -214,11 +210,6 @@ namespace EnemyOOP_Demo
             }
 
             return false;
-        }
-
-        public string GetName()
-        {
-            return name;
         }
         */
     }
