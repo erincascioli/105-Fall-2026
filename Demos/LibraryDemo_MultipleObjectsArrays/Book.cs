@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryDemo_MultipleObjectsArrays
 {
@@ -18,10 +14,12 @@ namespace LibraryDemo_MultipleObjectsArrays
         private int bookmarkedPage;
         private int readThrough;
 
-
+        /// <summary>
+        /// Permits access to the title of any Book from outside of the class
+        /// </summary>
         public string Title
-        {
-            get { return title; }
+        { 
+            get { return title; } 
         }
 
         /// <summary>

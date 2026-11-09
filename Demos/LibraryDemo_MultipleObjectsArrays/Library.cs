@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryDemo_MultipleObjectsArrays
 {
@@ -24,11 +20,12 @@ namespace LibraryDemo_MultipleObjectsArrays
         {
             // 2. Initialize the array here
             // DON'T do this (it re-declares the array):
-            //Book[] myBooks = new Book[3];
+            Book[] myBooks = new Book[3];
 
             // Do THIS:  (initializes the array field)
-            myBooks = new Book[3];
+            //myBooks = new Book[3];
 
+            // 3. Place Book objects into the array!
             // Direct instantiation into the array
             myBooks[0] = new Book();
             myBooks[1] = new Book("How to be a pest", "Dash the cat", 1);
@@ -81,11 +78,10 @@ namespace LibraryDemo_MultipleObjectsArrays
             {
                 // Wait...  I can't do this because title is private...
                 // Check is the title matches this method's parameter
-                
                 if (titleFromParam == myBooks[i].Title)
                 {
                     inLibrary = true;
-                }              
+                }
             }
 
             // Return the result.
