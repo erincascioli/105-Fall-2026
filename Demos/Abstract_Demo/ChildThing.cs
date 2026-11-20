@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 // Child of an abstract parent class
 // Inherits from ParentThing
@@ -48,6 +45,8 @@ namespace Abstract_Sec7
             // Delete this line and write whatever code is needed in this method.  
             //throw new NotImplementedException();
         }
+
+
 
         // Children can write their own methods, too.
         // Child classes are not limited to only use methods from their parents
