@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 // Demo: Abstract classes and methods
 // Abstract classes allow parent classes to share all of their code with child classes
@@ -25,6 +23,8 @@ namespace Abstract_Sec7
             ChildThing childObject = new ChildThing(2);     // FINE!
             SecondChildThing secondChildObject = 
                 new SecondChildThing("cake", 1);            // FINE!
+            ThirdChild myThirdGuy = new ThirdChild(456);
+            myThirdGuy.DoSomething();
 
 
             // ----------------------- Abstract limitations --------------------------
@@ -32,9 +32,10 @@ namespace Abstract_Sec7
             // And they can call their own methods, too
             // -----------------------------------------------------------------------
 
-            childObject.DoSomething();                               // Calling abstract method
-            childObject.DoMyOwnTask();                               // Calling child method
-            secondChildObject.DoSomething();                         // Calling abstract method
+            //Console.WriteLine("----- Calling methods on child objects -----");
+            //childObject.DoSomething();                               // Calling abstract method
+            //childObject.DoMyOwnTask();                               // Calling child method
+            //secondChildObject.DoSomething();                         // Calling abstract method
 
 
 
@@ -43,8 +44,9 @@ namespace Abstract_Sec7
             //   those overridden properties.
             // -----------------------------------------------------------------------
 
-            Console.WriteLine("Child 1's number: " + childObject.Number);
-            Console.WriteLine("Child 2's number: " + secondChildObject.Number);
+            //Console.WriteLine("\n----- Accessing child properties -----");
+            //Console.WriteLine("Child 1's number: " + childObject.Number);
+            //Console.WriteLine("Child 2's number: " + secondChildObject.Number);
 
 
 
@@ -78,14 +80,18 @@ namespace Abstract_Sec7
             // Call the UniqueField property only on SecondChildThing objects - 
             //   the parent class does NOT contain that field, so the IDE doesn't "see" it
             //   as part of the parent class, so downcasting must occur to call it. 
+            
+            
             for (int i = 0; i < childrenTypes.Count; i++)
             {
+                Console.WriteLine("\n----- All children DoSomething -----");
                 // Can be called on every child object in list
                 childrenTypes[i].DoSomething();       
                 
                 // Only call DoMyOwnTask() if the child is of type ChildThing
                 if(childrenTypes[i] is ChildThing)
                 {
+                    Console.WriteLine("\n----- Only one child type does its own task -----");
                     ChildThing child = (ChildThing)childrenTypes[i];
                     child.DoMyOwnTask();
                 }
@@ -93,14 +99,12 @@ namespace Abstract_Sec7
                 // Only use UniqueField property if the child is of type SecondChildThing
                 if (childrenTypes[i] is SecondChildThing)
                 {
+                    Console.WriteLine("\n----- Only one child type has a unique field -----");
                     SecondChildThing child = (SecondChildThing)childrenTypes[i];
                     Console.WriteLine(child.UniqueField);
                 }
             }
-
-
-            // Keep window open
-            Console.ReadLine();
+            
         }
     }
 }
